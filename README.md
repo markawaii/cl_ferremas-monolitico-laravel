@@ -62,7 +62,7 @@ Opcion 2
 - 3 Abra una terminal y navegue hasta la carpeta del proyecto.
 - 4 Copiar los archivos .env example `.env.example`
 - 5 Ejecute el comando `docker-compose up -d` Esto levantará los contenedores necesarios para ejecutar el proyecto.
-- 6 Ejecute el comando `docker exec -it cl_vision_natural_laravel-app-1 /bin/bash`.
+- 6 Ejecute el comando `docker exec -it cl_ferremas-monolitico-laravel-app-1 /bin/bash`.
 - 7 Dentro del contenedor, ejecute el comando `composer install`.
 - 8 Dentro del contenedor, ejecute el comando `composer update`.
 - 9 Dentro del contenedor, ejecute el comando `php artisan migrate:fresh --seed`.
