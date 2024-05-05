@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('producto_id')->constrained('productos')->onDelete('cascade');
             $table->dateTime('fecha');
             $table->decimal('valor', 10, 2);
-            $table->softDeletes(); 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

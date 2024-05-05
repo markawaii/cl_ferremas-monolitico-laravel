@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->integer('stock')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
