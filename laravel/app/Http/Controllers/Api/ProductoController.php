@@ -36,7 +36,7 @@ class ProductoController extends Controller
             'id' => $producto->id,
             'codigo_de_producto' => $producto->codigo_producto,
             'stock' => $producto->stock,
-            'valor_actual' => $ultimoPrecio->valor, // Asumiendo que el modelo PrecioProducto tiene una columna 'valor'
+            'valor_actual' => $ultimoPrecio->valor,
         ];
 
         return response()->json([
