@@ -62,7 +62,7 @@ class ProductoController extends Controller
 
         $resultado = [
             'id' => $producto->id,
-            'codigo_de_producto' => $producto->codigo_producto,
+            'codigo_producto' => $producto->codigo_producto,
             'marca' => $producto->marca,
             'stock' => $producto->stock,
             'modelo' => $producto->modelo,
@@ -81,7 +81,7 @@ class ProductoController extends Controller
 
         foreach ($productos as $producto){
             $resultado[] = [
-                'codigo_de_producto' => $producto->codigo_producto,
+                'codigo_producto' => $producto->codigo_producto,
                 'nombre' => $producto->nombre,
                 'modelo' => $producto->modelo,
                 'marca' => $producto->marca,
