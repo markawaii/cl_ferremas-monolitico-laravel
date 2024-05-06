@@ -51,6 +51,15 @@ class ProductoController extends Controller
     {
         $datos = $request->all();
         $producto = Producto::where('codigo_producto', $datos['codigo_producto'])->first();
+
+        $precios = [];
+        foreach ($producto->precios as $precio) {
+            $precios[] = [
+                'valor' => $precio->valor,
+                'fecha' => $precio->fecha
+            ];
+        }
+
         $resultado = [
             'id' => $producto->id,
             'codigo_de_producto' => $producto->codigo_producto,
@@ -58,17 +67,16 @@ class ProductoController extends Controller
             'stock' => $producto->stock,
             'modelo' => $producto->modelo,
             'nombre' => $producto->nombre,
-            'precio' => [
-                // 'valor' => $producto->precios['valor']
-            ]
-        ];    
+            'precios' => $precios
+        ];
         return $resultado;
     }
+
 
     public function listarTodosLosProductos()
     {
         $productos = Producto::all();
-       
+
 
         return $productos;
     }
