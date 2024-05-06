@@ -77,8 +77,18 @@ class ProductoController extends Controller
     {
         $productos = Producto::all();
 
+        $resultado = [];
 
-        return $productos;
+        foreach ($productos as $producto){
+            $resultado[] = [
+                'codigo_de_producto' => $producto->codigo_producto,
+                'nombre' => $producto->nombre,
+                'modelo' => $producto->modelo,
+                'marca' => $producto->marca,
+            ];
+        }
+
+        return $resultado;
     }
 
     private function generarCodigoProducto($nombreProducto)
