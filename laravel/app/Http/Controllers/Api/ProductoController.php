@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\PrecioProducto;
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class ProductoController extends Controller
 {
@@ -44,6 +45,32 @@ class ProductoController extends Controller
             'message' => 'Producto creado con éxito',
             'data' => $resultado
         ]);
+    }
+
+    public function obtenerProducto(Request $request)
+    {
+        $datos = $request->all();
+        $producto = Producto::where('codigo_producto', $datos['codigo_producto'])->first();
+        $resultado = [
+            'id' => $producto->id,
+            'codigo_de_producto' => $producto->codigo_producto,
+            'marca' => $producto->marca,
+            'stock' => $producto->stock,
+            'modelo' => $producto->modelo,
+            'nombre' => $producto->nombre,
+            'precio' => [
+                // 'valor' => $producto->precios['valor']
+            ]
+        ];    
+        return $resultado;
+    }
+
+    public function listarTodosLosProductos()
+    {
+        $productos = Producto::all();
+       
+
+        return $productos;
     }
 
     private function generarCodigoProducto($nombreProducto)
