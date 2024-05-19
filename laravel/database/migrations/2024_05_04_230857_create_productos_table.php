@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('codigo_producto')->unique();
             $table->foreignId('marca_de_producto_id')->constrained('marca_de_productos')->onDelete('cascade');
+            $table->foreignId('categoria_id')->constrained('categorias')->onDelete('cascade');
             $table->string('modelo');
             $table->string('nombre');
             $table->integer('stock')->default(0);

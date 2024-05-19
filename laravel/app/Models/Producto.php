@@ -24,4 +24,8 @@ class Producto extends Model
         return $this->hasMany(PrecioProducto::class, 'producto_id');
     }
 
+    public function marca()
+    {
+        return $this->belongsTo(MarcaDeProducto::class, 'marca_de_producto_id');
+    }
 }

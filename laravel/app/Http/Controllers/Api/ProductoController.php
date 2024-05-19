@@ -18,7 +18,8 @@ class ProductoController extends Controller
 
         $producto = new Producto();
         $producto->codigo_producto = $codigo;
-        $producto->marca = $datos['marca'];
+        $producto->marca_de_producto_id = $datos['marca_de_producto_id'];
+        $producto->categoria_id = $datos['categoria_id'];
         $producto->modelo = $datos['modelo'];
         $producto->nombre = $datos['nombre_producto'];
         $producto->stock = $datos['stock_inicial'];
@@ -63,7 +64,7 @@ class ProductoController extends Controller
         $resultado = [
             'id' => $producto->id,
             'codigo_producto' => $producto->codigo_producto,
-            'marca' => $producto->marca,
+            'marca' => $producto->marca->nombre,
             'stock' => $producto->stock,
             'modelo' => $producto->modelo,
             'nombre' => $producto->nombre,
@@ -84,7 +85,7 @@ class ProductoController extends Controller
                 'codigo_producto' => $producto->codigo_producto,
                 'nombre' => $producto->nombre,
                 'modelo' => $producto->modelo,
-                'marca' => $producto->marca,
+                'marca' => $producto->marca->nombre,
             ];
         }
 
