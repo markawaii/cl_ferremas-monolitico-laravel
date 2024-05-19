@@ -2,7 +2,7 @@
 
 ## ¿Qué es este repositorio?
 
-Este repositorio es un proyecto diseñado para obtener conocimientos. En particular, se centra en el desarrollo de una aplicación utilizando el framework PHP Laravel y contenedores Docker.
+Este repositorio es un proyecto diseñado para cumplir con los requerimientos de Integracion de Plaformas
 
 ## Estructura de los directorios
 
@@ -41,40 +41,22 @@ El repositorio contiene los siguientes directorios:
 3. [Sweetalert2](https://sweetalert2.github.io/)
 3. [MySQL](https://dev.mysql.com/doc/refman/8.0/en/)
 
-## Documentacion
-
-[Confluence](https://ignacio-veliz.atlassian.net/wiki/spaces/LCSA/pages/38862850/Visi+n+Natural)
 
 ## Cómo ejecutar este proyecto
 
 Para ejecutar este proyecto, siga estos pasos:
 
 Opcion 1
-
-- 1 Descargue el proyecto de GitHub.
-- 2 Asegúrese de tener instalado Docker
-- 3 Ejecutar el el archivo ejecutar.bat. con esto ya estas listo para trabajar.
-
-Opcion 2
-
 - 1 Descargue el proyecto de GitHub.
 - 2 Asegúrese de tener instalado Docker
 - 3 Abra una terminal y navegue hasta la carpeta del proyecto.
-- 4 Copiar los archivos .env example `.env.example`
+- 4 Copiar los archivos `.env.example` y modificar el nombre de la copiar para que sean igual a `.env` uno de estos esta en la ruta principal de proyecto y el otro esta en la carpeta laravel
 - 5 Ejecute el comando `docker-compose up -d` Esto levantará los contenedores necesarios para ejecutar el proyecto.
 - 6 Ejecute el comando `docker exec -it cl_ferremas-monolitico-laravel-app-1 /bin/bash`.
 - 7 Dentro del contenedor, ejecute el comando `composer install`.
 - 8 Dentro del contenedor, ejecute el comando `composer update`.
 - 9 Dentro del contenedor, ejecute el comando `php artisan migrate:fresh --seed`.
 - 10 Dentro del contenedor, ejecute el comando `php artisan key:generate`.
-- 11 Dentro del contenedor, ejecute el comando `php artisan optimize`.
+- 11 Dentro del contenedor, ejecute el comando `php artisan optimize`. la funcion de este comando es actualuzar las rutas
 - 12 Si no ha cambiado la dirección, utilice la siguiente URL para visualizar el proyecto: `http://localhost`.
 - 13 Una vez que se hayan completado estos pasos, la aplicación Laravel debería estar lista para su uso.
-
-
-## Ejecutar pruebas unitarias
-Asegúrate de que no estás utilizando la base de datos de producción. Para hacerlo, verifica la configuración de la base de datos en el archivo .env ubicado dentro de la carpeta de Laravel y compárala con la configuración de la base de datos que se encuentra en el archivo phpunit.xml.
-
-- 1 limpair la base de datos `php artisan migrate:fresh`.
-- 2 Ejecutar el seeder de roles `php artisan db:seed --class=RolesSeeder`.
-- 3 Ejecutar las pruebas unitarias `php artisan test`.
