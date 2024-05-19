@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class MarcaDeProductoController extends Controller
 {
-    public function obtenerTodosLosProductos(){
+    public function obtenerTodasLasMarcas(){
         $Marcas = MarcaDeProducto::all();
 
         $resultado = [];

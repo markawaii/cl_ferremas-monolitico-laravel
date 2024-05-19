@@ -15,11 +15,15 @@ Route::controller(ProductoController::class)->group(function () {
 });
 
 Route::controller(MarcaDeProductoController::class)->group(function () {
-    Route::get('/marca-de-producto/listar-marcas', 'obtenerTodosLosProductos');
-
+    Route::get('/marca-de-producto/listar-marcas', 'obtenerTodasLasMarcas');
+    Route::post('/marca-de-producto/crear-marca', 'crearMarca');
+    Route::put('/marca-de-producto/modificar-marca', 'modificarMarca');
+    Route::delete('/marca-de-producto/eliminar-marca', 'eliminarMarca');
 });
 
 Route::controller(CategoriaController::class)->group(function () {
     Route::get('/categoria/listar-todas_las_categorias', 'todasLasCategorias');
-
+    Route::post('/categoria/crear-categoria', 'crearCategoria');
+    Route::put('/categoria/modifica-categoria', 'modificarCategoria');
+    Route::delete('/categoria/eliminar-categoria', 'eliminarCategoria');
 });
