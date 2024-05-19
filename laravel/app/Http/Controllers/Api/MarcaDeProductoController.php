@@ -23,4 +23,36 @@ class MarcaDeProductoController extends Controller
 
         return $resultado;
     }
+
+    public function crearMarca(Request $request){
+        $datos = $request->all();
+
+        $item = new MarcaDeProducto();
+        $item->nombre = $datos['nombre'];
+        $item->activo = $datos['activo'];
+        $item->save();
+
+        return response()->json(['status' => 'success', 'message' => 'Nueva marca añadida', 'data' => $item]);
+    }
+
+
+    public function modificarMarca(Request $request){
+        $datos = $request->all();
+
+        $item = MarcaDeProducto::where('id', $datos['marca_id'])->first();
+        $item->nombre = $datos['nombre'];
+        $item->save();
+
+        return response()->json(['status' => 'success', 'message' => 'La marca fue modificada', 'data' => $item]);
+    }
+
+
+    public function eliminarMarca(Request $request){
+        $datos = $request->all();
+
+        $item = MarcaDeProducto::where('id', $datos['marca_id'])->first();
+        $item->delete();
+
+        return response()->json(['status' => 'success', 'message' => 'La marca fue eliminada', 'data' => $item]);
+    }
 }
