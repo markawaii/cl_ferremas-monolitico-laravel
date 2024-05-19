@@ -50,7 +50,7 @@ Opcion 1
 - 1 Descargue el proyecto de GitHub.
 - 2 Asegúrese de tener instalado Docker
 - 3 Abra una terminal y navegue hasta la carpeta del proyecto.
-- 4 Copiar los archivos `.env.example` y modificar el nombre de la copiar para que sean igual a `.env` uno de estos esta en la ruta principal de proyecto y el otro esta en la carpeta laravel
+- 4 Copiar los archivos `.env.example` y modificar el nombre de las copias para que sean igual a `.env` uno de estos esta en la ruta principal de proyecto y el otro esta en la carpeta laravel
 - 5 Ejecute el comando `docker-compose up -d` Esto levantará los contenedores necesarios para ejecutar el proyecto.
 - 6 Ejecute el comando `docker exec -it cl_ferremas-monolitico-laravel-app-1 /bin/bash`.
 - 7 Dentro del contenedor, ejecute el comando `composer install`.
