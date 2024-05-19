@@ -80,7 +80,7 @@ class ProductoController extends Controller
 
         $resultado = [];
 
-        foreach ($productos as $producto){
+        foreach ($productos as $producto) {
             $resultado[] = [
                 'codigo_producto' => $producto->codigo_producto,
                 'nombre' => $producto->nombre,
@@ -90,6 +90,43 @@ class ProductoController extends Controller
         }
 
         return $resultado;
+    }
+
+    public function cambiarCategoriasProducto(Request $request)
+    {
+        $datos = $request->all();
+
+        $producto = Producto::where('codigo_producto', $datos['codigo_producto'])->first();
+        $producto->categoria_id = $datos['categoria_id'];
+        $producto->save();
+
+        $precios = [];
+        foreach ($producto->precios as $precio) {
+            $precios[] = [
+                'valor' => $precio->valor,
+                'fecha' => $precio->fecha
+            ];
+        }
+
+        $resultado = [
+            'id' => $producto->id,
+            'codigo_producto' => $producto->codigo_producto,
+            'marca' => $producto->marca->nombre,
+            'stock' => $producto->stock,
+            'modelo' => $producto->modelo,
+            'nombre' => $producto->nombre,
+            'precios' => $precios
+        ];
+        return response()->json(['status' => 'success', 'message' => 'Categoria del producto modificada', 'data' => $resultado]);
+    }
+
+
+    public function eliminarProducto(Request $request){
+        $datos = $request->all();
+        $producto = Producto::where('codigo_producto', $datos['codigo_producto'])->first();
+        $producto->delete();
+
+        return response()->json(['status' => 'success', 'message' => 'Producto eliminado']);
     }
 
     private function generarCodigoProducto($nombreProducto)
