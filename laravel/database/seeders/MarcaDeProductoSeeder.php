@@ -19,6 +19,8 @@ class MarcaDeProductoSeeder extends Seeder
             ['nombre' => 'M3', 'activo' => true],
             ['nombre' => 'WD-40', 'activo' => true],
             ['nombre' => 'wilson', 'activo' => true],
+            ['nombre' => 'Cater', 'activo' => false],
+
 
         ];
 
