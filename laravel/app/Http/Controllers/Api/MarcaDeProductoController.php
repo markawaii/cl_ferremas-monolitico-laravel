@@ -41,6 +41,7 @@ class MarcaDeProductoController extends Controller
 
         $item = MarcaDeProducto::where('id', $datos['marca_id'])->first();
         $item->nombre = $datos['nombre'];
+        $item->activo = $datos['activo'];
         $item->save();
 
         return response()->json(['status' => 'success', 'message' => 'La marca fue modificada', 'data' => $item]);
@@ -53,6 +54,6 @@ class MarcaDeProductoController extends Controller
         $item = MarcaDeProducto::where('id', $datos['marca_id'])->first();
         $item->delete();
 
-        return response()->json(['status' => 'success', 'message' => 'La marca fue eliminada', 'data' => $item]);
+        return response()->json(['status' => 'success', 'message' => 'La marca fue eliminada']);
     }
 }
