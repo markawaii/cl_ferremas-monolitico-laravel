@@ -4,8 +4,8 @@
       <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item px-2"><a class="nav-link fw-medium active" aria-current="page" href="#categoryWomen">En Stock</a></li>
-          <li class="nav-item px-2"><a class="nav-link fw-medium" href="#header">Proximamente</a></li>
-          <li class="nav-item px-2"><a class="nav-link fw-medium" href="#collection">Liqudacion</a></li>
+          <li class="nav-item px-2"><a class="nav-link fw-medium" href="{{ route('productos.index') }}">Productos</a></li>
+          <li class="nav-item px-2"><a class="nav-link fw-medium" href="#collection">Marcas</a></li>
           <li class="nav-item px-2"><a class="nav-link fw-medium" href="#outlet">Contactanos</a></li>
         </ul>
         <form class="d-flex"><a class="text-1000" href="#!">
