@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\MarcaDeProducto;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class ProductosController extends Controller
      */
     public function index()
     {
-        $items = Producto::all();
+        $items = MarcaDeProducto::all();
         return view('pages.productos.index', compact('items'));
     }
 
