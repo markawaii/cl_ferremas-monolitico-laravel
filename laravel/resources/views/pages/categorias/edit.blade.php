@@ -10,19 +10,38 @@
                         <h6 class="text-capitalize">Modificar Marca</h6>
                     </div>
                     <div class="card-body p-3">
-                        <form action="{{ route('marcas.update', $item->id) }}" method="post">
+                        <form action="{{ route('categorias.update', $categoria->id) }}" method="post">
                             @method('PUT')
                             @csrf
-                            <label for="nombre">Nombre</label>
-                            <input type="text" name="nombre" id="nombre" class="form-control mb-3" value="{{ $item->nombre }}">
+                            <div class="form-group mb-3">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input type="text" name="nombre" id="nombre" class="form-control" value="{{ $categoria->nombre }}">
+                            </div>
 
-                            <label for="estado">Estado</label>
-                            <select name="estado" id="estado" class="form-control">
-                                <option value="1">Activo</option>
-                                <option value="0">Desactivado</option>
-                            </select>
+                            <div class="form-group mb-3">
+                                <label for="estado" class="form-label">Estado</label>
+                                <select name="estado" id="estado" class="form-control">
+                                    <option value="1">Activo</option>
+                                    <option value="0">Desactivado</option>
+                                </select>
+                            </div>
 
-                            <button class="btn btn-primary mt-4">Modificar Marca</button>
+                            <div class="form-group mb-3">
+                                <label for="parent" class="form-label">Categoría Padre</label>
+                                <select name="parent_id" id="parent" class="form-control">
+                                    <option value="">Sin padre</option>
+                                    @foreach ($categorias as $item)
+                                        <option value="{{ $item->id }}">{{ $item->nombre }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="descripcion" class="form-label">Descripción</label>
+                                <textarea name="descripcion" id="descripcion" class="form-control" cols="30" rows="5">{{ $categoria->descripcion }}</textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary mt-4">Crear</button>
                         </form>
                     </div>
                 </div>

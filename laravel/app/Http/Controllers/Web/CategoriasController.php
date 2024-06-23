@@ -18,35 +18,30 @@ class CategoriasController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $categoria = new Categoria();
+        $categoria->nombre = $request->nombre;
+        $categoria->estado = $request->estado;
+        $categoria->descripcion = $request->descripcion;
+        $categoria->categoria_padre = $request->parent_id;
+        $categoria->save();
+
+        return redirect()->route('categorias.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+
+        $categorias = Categoria::all();
+        $categoria = Categoria::find($id);
+        return view('pages.categorias.edit', compact('categoria','categorias'));
     }
 
     /**
@@ -54,7 +49,14 @@ class CategoriasController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $categoria = Categoria::find($id);
+        $categoria->nombre = $request->nombre;
+        $categoria->estado = $request->estado;
+        $categoria->descripcion = $request->descripcion;
+        $categoria->categoria_padre = $request->parent_id;
+        $categoria->save();
+
+        return redirect()->route('categorias.index');
     }
 
     /**
@@ -62,6 +64,8 @@ class CategoriasController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $categoria =  Categoria::find($id);
+        $categoria->delete();
+        return redirect()->route('categorias.index');
     }
 }
