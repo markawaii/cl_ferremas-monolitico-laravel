@@ -8,14 +8,14 @@ use App\Http\Controllers\Web\MarcasController;
 use App\Http\Controllers\Web\ProductosController;
 use App\Http\Controllers\Web\CategoriasController;
 
-Route::get('/', [HomeController::class, 'index'])->name('inicio');
 
-Route::get('sign-in', [AuthController::class, 'signIn'])->name('sign-in');
+Route::get('/', [AuthController::class, 'signIn'])->name('sign-in');
 Route::post('auth', [AuthController::class, 'auth'])->name('auth');
 Route::get('sign-up', [AuthController::class, 'signUp'])->name('sign-up');
 Route::post('create-account', [AuthController::class, 'createAccount'])->name('create-account');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout'); // Ruta de cierre de sesión con GET
 
+Route::get('/inicio', [HomeController::class, 'index'])->name('inicio');
 
 Route::get('/productos', [ProductosController::class, 'index'])->name('productos.index');
 Route::get('/productos/create', [ProductosController::class, 'create'])->name('productos.create');
