@@ -19,9 +19,9 @@
             </div>
             <ul class="navbar-nav  justify-content-end">
                 <li class="nav-item d-flex align-items-center">
-                    <form role="form" method="post" action="" id="logout-form">
+                    <form role="form" method="get" action="{{ route('logout') }}" id="logout-form">
                         @csrf
-                        <a href=""
+                        <a href="{{ route('logout') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                             class="nav-link text-white font-weight-bold px-0">
                             <i class="fa fa-user me-sm-1"></i>

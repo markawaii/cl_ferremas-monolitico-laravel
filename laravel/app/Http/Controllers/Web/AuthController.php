@@ -8,23 +8,29 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class AuhtController extends Controller
+class AuthController extends Controller
 {
-    public function signIn(){
+    public function signIn()
+    {
         return view('pages.sign-in-static');
     }
 
-
-    public function auth(Request $request){
-        dd($request->all());
-        return view('pages.tables');
+    public function auth(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            return redirect()->route('inicio');
+        }
+        return redirect()->route('sign-in')->withErrors(['email' => 'Credenciales no válidas']);
     }
 
-    public function signUp(Request $request){
+    public function signUp()
+    {
         return view('pages.sign-up-static');
     }
 
-    public function createAccount(Request $request){
+    public function createAccount(Request $request)
+    {
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
@@ -38,4 +44,9 @@ class AuhtController extends Controller
         return redirect()->route('inicio');
     }
 
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('sign-in');
+    }
 }
