@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Web\AuhtController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\MarcasController;
@@ -7,6 +8,14 @@ use App\Http\Controllers\Web\ProductosController;
 use App\Http\Controllers\Web\CategoriasController;
 
 Route::get('/', [HomeController::class, 'index'])->name('inicio');
+
+Route::get('/sign-in', [AuhtController::class, 'signIn'])->name('sign-in');
+Route::post('/auth', [AuhtController::class, 'auth'])->name('auth');
+Route::get('/sign-up', [AuhtController::class, 'signUp'])->name('sign-up');
+Route::post('/create-account', [AuhtController::class, 'createAccount'])->name('create-account');
+
+
+
 
 Route::get('/productos', [ProductosController::class, 'index'])->name('productos.index');
 Route::get('/productos/create', [ProductosController::class, 'create'])->name('productos.create');

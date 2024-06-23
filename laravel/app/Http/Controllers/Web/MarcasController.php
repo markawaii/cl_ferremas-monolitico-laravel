@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\MarcaDeProducto;
 use Illuminate\Http\Request;
 
 class MarcasController extends Controller
@@ -12,7 +13,8 @@ class MarcasController extends Controller
      */
     public function index()
     {
-        //
+        $items = MarcaDeProducto::all();
+        return view('pages.dashboard',compact('items'));
     }
 
     /**
@@ -20,7 +22,8 @@ class MarcasController extends Controller
      */
     public function create()
     {
-        //
+        $marcas = MarcaDeProducto::all();
+        return view('pages.dashboard',compact('marcas'));
     }
 
     /**
