@@ -14,16 +14,7 @@ class MarcasController extends Controller
     public function index()
     {
         $items = MarcaDeProducto::all();
-        return view('pages.dashboard',compact('items'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        $marcas = MarcaDeProducto::all();
-        return view('pages.dashboard',compact('marcas'));
+        return view('pages.marcas.index', compact('items'));
     }
 
     /**
@@ -31,15 +22,12 @@ class MarcasController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $marca = new MarcaDeProducto();
+        $marca->nombre = $request->nombre;
+        $marca->activo = $request->estado;
+        $marca->save();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        return redirect()->route('marcas.index');
     }
 
     /**
@@ -47,7 +35,8 @@ class MarcasController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $item = MarcaDeProducto::find($id);
+        return view('pages.marcas.edit', compact('item'));
     }
 
     /**
@@ -55,7 +44,12 @@ class MarcasController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $marca = MarcaDeProducto::find($id);
+        $marca->nombre = $request->nombre;
+        $marca->activo = $request->estado;
+        $marca->save();
+
+        return redirect()->route('marcas.index');
     }
 
     /**
@@ -63,6 +57,8 @@ class MarcasController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $marca = MarcaDeProducto::find($id);
+        $marca->delete();
+        return redirect()->route('marcas.index');
     }
 }
