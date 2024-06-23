@@ -46,7 +46,6 @@ El repositorio contiene los siguientes directorios:
 
 Para ejecutar este proyecto, siga estos pasos:
 
-Opcion 1
 - 1 Descargue el proyecto de GitHub.
 - 2 Asegúrese de tener instalado Docker
 - 3 Abra una terminal y navegue hasta la carpeta del proyecto.
@@ -60,3 +59,7 @@ Opcion 1
 - 11 Dentro del contenedor, ejecute el comando `php artisan optimize`. la funcion de este comando es actualuzar las rutas
 - 12 Si no ha cambiado la dirección, utilice la siguiente URL para visualizar el proyecto: `http://localhost`.
 - 13 Una vez que se hayan completado estos pasos, la aplicación Laravel debería estar lista para su uso.
+
+Pruebas pruebas realizadas
+
+-
