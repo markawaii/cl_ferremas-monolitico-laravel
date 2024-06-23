@@ -1,21 +1,25 @@
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
 
 @section('content')
-    @include('layouts.navbars.auth.topnav', ['title' => 'Marcas'])
+    @include('layouts.navbars.auth.topnav', ['title' => 'Productos'])
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-lg-7 mb-lg-0 mb-4">
                 <div class="card z-index-2 h-100">
                     <div class="card-header pb-0 pt-3 bg-transparent">
-                        <h6 class="text-capitalize">Listado de Marcas</h6>
+                        <h6 class="text-capitalize">Listado de Productos</h6>
                     </div>
                     <div class="card-body p-3">
-                        <table id="sueldosTable" class="table align-items-center justify-content-center mb-0">
+                        <table id="productosTable" class="table align-items-center justify-content-center mb-0">
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nombre</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Estado</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Categoría</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Marca</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Valor</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Modelo</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Stock</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Acciones</th>
                                 </tr>
                             </thead>
@@ -33,16 +37,28 @@
                                             <p class="text-sm font-weight-bold mb-0">{{ $item->nombre }}</p>
                                         </td>
                                         <td>
-                                            <span class="text-xs font-weight-bold">{{ $item->activo ? 'Activo' : 'Desactivado' }}</span>
+                                            <p class="text-sm font-weight-bold mb-0">{{ $item->categoria->nombre ?? 'N/A' }}</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-sm font-weight-bold mb-0">{{ $item->marca->nombre ?? 'N/A' }}</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-sm font-weight-bold mb-0">$ {{ $item->precioActual->valor ?? 'N/A' }}</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-sm font-weight-bold mb-0">{{ $item->modelo }}</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-sm font-weight-bold mb-0">{{ $item->stock }}</p>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <a class="btn btn-outline-warning text-primary mb-0" href="{{ route('marcas.edit', $item->id) }}">
+                                            <a class="btn btn-outline-warning text-primary mb-0" href="{{ route('productos.edit', $item->id) }}">
                                                 <i class="fas fa-edit text-xs"></i>
                                             </a>
-                                            <form action="{{ route('marcas.destroy', $item->id) }}" method="POST" style="display:inline;">
+                                            <form action="{{ route('productos.destroy', $item->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="btn btn-outline-danger text-primary mb-0" onclick="return confirm('¿Estás seguro de que deseas eliminar esta marca?');">
+                                                <button class="btn btn-outline-danger text-primary mb-0" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?');">
                                                     <i class="fas fa-trash-alt text-xs"></i>
                                                 </button>
                                             </form>
@@ -57,21 +73,51 @@
             <div class="col-lg-5">
                 <div class="card z-index-2 h-100">
                     <div class="card-header pb-0 pt-3 bg-transparent">
-                        <h6 class="text-capitalize">Nueva Marca</h6>
+                        <h6 class="text-capitalize">Nuevo Producto</h6>
                     </div>
                     <div class="card-body p-3">
-                        <form action="{{ route('marcas.store') }}" method="post">
+                        <form action="{{ route('productos.store') }}" method="post">
                             @csrf
-                            <label for="nombre">Nombre</label>
-                            <input type="text" name="nombre" id="nombre" class="form-control mb-3">
 
-                            <label for="estado">Estado</label>
-                            <select name="estado" id="estado" class="form-control">
-                                <option value="1">Activo</option>
-                                <option value="0">Desactivado</option>
-                            </select>
+                            <div class="form-group mb-3">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input type="text" name="nombre" id="nombre" class="form-control">
+                            </div>
 
-                            <button class="btn btn-primary mt-4">Crear</button>
+                            <div class="form-group mb-3">
+                                <label for="categoria" class="form-label">Categoría</label>
+                                <select name="categoria" id="categoria" class="form-control">
+                                    @foreach ($categorias as $item)
+                                        <option value="{{ $item->id }}">{{ $item->nombre }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="marca_de_producto_id" class="form-label">Marcas</label>
+                                <select name="marca_de_producto_id" id="marca_de_producto_id" class="form-control">
+                                    @foreach ($marcas as $item)
+                                        <option value="{{ $item->id }}">{{ $item->nombre }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="valor" class="form-label">Valor</label>
+                                <input type="number" name="valor" id="valor" class="form-control">
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="modelo" class="form-label">Modelo</label>
+                                <input type="text" name="modelo" id="modelo" class="form-control">
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="stock" class="form-label">Stock</label>
+                                <input type="number" name="stock" id="stock" class="form-control">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary mt-4">Crear</button>
                         </form>
                     </div>
                 </div>
@@ -80,6 +126,8 @@
         @include('layouts.footers.auth.footer')
     </div>
 @endsection
+
+
 
 
 

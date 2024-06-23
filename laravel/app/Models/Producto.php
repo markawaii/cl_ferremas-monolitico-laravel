@@ -13,7 +13,8 @@ class Producto extends Model
 
     protected $fillable = [
         'codigo_producto',
-        'marca',
+        'categoria_id',
+        'marca_de_producto_id',
         'modelo',
         'nombre',
         'stock'
@@ -27,5 +28,15 @@ class Producto extends Model
     public function marca()
     {
         return $this->belongsTo(MarcaDeProducto::class, 'marca_de_producto_id');
+    }
+
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class, 'categoria_id');
+    }
+
+    public function precioActual()
+    {
+        return $this->hasOne(PrecioProducto::class)->latestOfMany();
     }
 }

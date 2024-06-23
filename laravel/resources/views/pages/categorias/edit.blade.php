@@ -41,7 +41,7 @@
                                 <textarea name="descripcion" id="descripcion" class="form-control" cols="30" rows="5">{{ $categoria->descripcion }}</textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-primary mt-4">Crear</button>
+                            <button type="submit" class="btn btn-primary mt-4">Actualizar</button>
                         </form>
                     </div>
                 </div>

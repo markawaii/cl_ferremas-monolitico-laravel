@@ -22,7 +22,7 @@
                                 <option value="0">Desactivado</option>
                             </select>
 
-                            <button class="btn btn-primary mt-4">Modificar Marca</button>
+                            <button class="btn btn-primary mt-4">Actualizar</button>
                         </form>
                     </div>
                 </div>
