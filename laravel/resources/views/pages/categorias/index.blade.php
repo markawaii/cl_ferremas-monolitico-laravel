@@ -1,13 +1,13 @@
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
 
 @section('content')
-    @include('layouts.navbars.auth.topnav', ['title' => 'Marcas'])
+    @include('layouts.navbars.auth.topnav', ['title' => 'Categoria'])
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-lg-7 mb-lg-0 mb-4">
                 <div class="card z-index-2 h-100">
                     <div class="card-header pb-0 pt-3 bg-transparent">
-                        <h6 class="text-capitalize">Listado de Marcas</h6>
+                        <h6 class="text-capitalize">Listado de Categorias</h6>
                     </div>
                     <div class="card-body p-3">
                         <table id="sueldosTable" class="table align-items-center justify-content-center mb-0">
